@@ -49,7 +49,7 @@
 		CGSize size = [[CCDirector sharedDirector] winSize];
         
 		// position the label on the center of the screen
-		label.position =  ccp( size.width /2 , size.height-50 );
+		label.position =  ccp( size.width /2 , size.height );
 		
 		// add the label as a child to this Layer
 		[self addChild: label];
@@ -65,30 +65,38 @@
 		
 		// to avoid a retain-cycle with the menuitem and blocks
 		
-        CCSprite *rect = [CCSprite node];
+        /*CCSprite *rect = [CCSprite node];
         [rect setTextureRect:CGRectMake(0, 0, 200, 200)];
+        [rect setColor:ccBLACK];*/
         
 		// Achievement Menu Item using blocks
 		CCMenuItemImage *sphere = [CCMenuItemImage itemWithNormalImage:@"Circle.png"
                                     selectedImage: @"Circle.png"
                                     target:self
                                     selector:@selector (back:)];
+        [sphere runAction:[CCScaleTo actionWithDuration:0.05 scale:2.5]];
+        [sphere setPosition:ccp(-350, size.height-400)];
 
-        CCMenuItemImage *cube = [CCMenuItemImage itemWithNormalImage: @"rect"
-                                selectedImage: @"rect"
+        CCMenuItemImage *cube = [CCMenuItemImage itemWithNormalImage: @"Square.jpg"
+                                selectedImage: @"Square.jpg"
                                 target:self
                                 selector:@selector (back:)];
+        [cube runAction:[CCScaleTo actionWithDuration:0.05 scale:0.4]];
+        [cube setPosition:ccp(0, size.height-400)];
 		
-		CCMenuItemImage *tetrehedron = [CCMenuItemImage itemWithNormalImage:@"Triangle.jpg"
-                                       selectedImage: @"Triangle.jpg"
+		CCMenuItemImage *tetrahedron = [CCMenuItemImage itemWithNormalImage:@"Triangle.png"
+                                       selectedImage: @"Triangle.png"
                                        target:self
                                        selector:@selector (back:)];
+        [tetrahedron runAction:[CCScaleTo actionWithDuration:0.05 scale:0.5]];
+        [tetrahedron setPosition:ccp(350, size.height-400)];
         
 		
-		CCMenu *planetSelect  = [CCMenu menuWithItems:sphere, cube, tetrehedron, nil];
+		CCMenu *planetSelect  = [CCMenu menuWithItems:sphere, cube, tetrahedron, nil];
 		
-		[planetSelect alignItemsHorizontallyWithPadding:20];
-		[planetSelect setPosition:ccp( size.width/2, size.height/2)];
+		/*[planetSelect alignItemsHorizontallyWithPadding:10];
+		[planetSelect setPosition:ccp( size.width/2, size.height/2)];*/
+        [self runAction:[CCScaleTo actionWithDuration:0.05 scale:0.5]];
 		
 		// Add the menu to the layer
 		[self addChild:planetSelect];
